@@ -609,6 +609,18 @@ img {
     overflow: hidden;
     box-shadow: 0 24px 64px rgba(13, 31, 60, 0.18);
     position: relative;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+}
+
+.ui-mockup:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 80px rgba(13, 31, 60, 0.25);
+}
+
+.dashboard-img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .mockup-topbar {
