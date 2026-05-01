@@ -455,6 +455,15 @@ img {
     color: var(--cyan-dark);
 }
 
+.heading-huge {
+    font-size: 5.5rem;
+    margin-bottom: 2rem;
+}
+
+.heading-cloud {
+    font-size: 4.5rem;
+}
+
 .body-lead {
     font-size: 1.05rem;
     color: var(--gray-600);
@@ -784,7 +793,7 @@ img {
 .solutions-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 2.5rem;
     margin-top: 3.5rem;
 }
 
@@ -1179,6 +1188,14 @@ img {
         font-size: 3.6rem;
     }
 
+    .heading-huge {
+        font-size: 4rem;
+    }
+
+    .heading-cloud {
+        font-size: 3.5rem;
+    }
+
     .product-carousel {
         grid-template-columns: 1fr;
     }
@@ -1219,8 +1236,37 @@ img {
 }
 
 @media (max-width: 700px) {
+    .container {
+        padding: 0 1.2rem;
+    }
+
+    .nav-inner {
+        padding: 0 1rem;
+    }
+
+    .nav-secondary {
+        display: none;
+    }
+
+    .main-logo {
+        height: 35px;
+    }
+
+    .btn-demo {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+
     .hero h1 {
         font-size: 2.6rem;
+    }
+
+    .heading-huge {
+        font-size: 2.8rem;
+    }
+
+    .heading-cloud {
+        font-size: 2.4rem;
     }
 
     .solutions-grid {
