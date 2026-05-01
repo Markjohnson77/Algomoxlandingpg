@@ -111,13 +111,43 @@ document.addEventListener('DOMContentLoaded', () => {
             if (img.complete) return;
             img.onload = () => { /* triggers offset recalculation implicitly on next frame */ };
         });
-
         // Start Entrance Animations
         initHeroEntrance();
         // Start Reveal Engine
         initScrollReveal();
         // Start Dynamic Text Loop
         initDynamicTextLoop();
+    } // End of initLogoLoop
+
+    // Start dynamic smart navbar
+    initSmartNav();
+
+    // 1.5. SMART NAVBAR SCRIPT (Hide on scroll down, show on scroll up)
+    function initSmartNav() {
+        const nav = document.querySelector('.site-nav');
+        if (!nav) return;
+
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+
+            // If we are at the very top (hero section area), always show the nav
+            if (currentScrollY < 150) {
+                nav.classList.remove('nav-hidden');
+            } else {
+                // We've scrolled down past the top
+                if (currentScrollY > lastScrollY) {
+                    // Scrolling down - hide nav
+                    nav.classList.add('nav-hidden');
+                } else {
+                    // Scrolling up - show nav
+                    nav.classList.remove('nav-hidden');
+                }
+            }
+
+            lastScrollY = currentScrollY;
+        }, { passive: true });
     }
 
     // 2. HERO ENTRANCE ANIMATION (Zoom-out, Slide-in text, Pop buttons)

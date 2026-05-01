@@ -70,6 +70,8 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    padding-top: 72px;
+    /* Reserves space for fixed nav */
 }
 
 a {
@@ -86,9 +88,16 @@ img {
 .site-nav {
     background: var(--cream);
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site-nav.nav-hidden {
+    transform: translateY(-100%);
 }
 
 .nav-inner {
@@ -1408,4 +1417,201 @@ img {
 .typing-char {
     display: inline-block;
     will-change: opacity, transform;
+}
+
+/* Algomox.Cloud 3-Column Layout */
+.cloud-control-grid {
+    display: grid;
+    grid-template-columns: 210px 1fr 210px;
+    gap: 4rem;
+    align-items: flex-start;
+    margin: 4rem auto 0;
+    max-width: 1800px;
+}
+
+.cloud-col-left {
+    text-align: right;
+}
+
+.cloud-col-left .check-list li {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.cloud-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.cloud-intro-block {
+    text-align: left;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 1200px) {
+    .cloud-control-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .cloud-col {
+        order: 2;
+    }
+
+    .cloud-control-grid .ui-mockup {
+        order: 1;
+    }
+}
+
+/* ===================== PREMIUM SOLUTIONS CARDS (CORNER REVEAL) ===================== */
+.sol-card-reveal {
+    display: block;
+    position: relative;
+    max-width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    /* Subtle glass core */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Initial ghost border */
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    text-decoration: none;
+    z-index: 1;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease;
+}
+
+.sol-card-reveal:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: var(--cyan);
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1.5);
+    transform-origin: 50% 50%;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sol-card-reveal:hover:before {
+    transform: scale(28);
+    /* Swell to fill the card */
+}
+
+.sol-card-reveal:hover {
+    transform: translateY(-5px);
+    border-color: var(--cyan);
+}
+
+.go-corner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    background-color: var(--cyan);
+    border-radius: 0 12px 0 32px;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.go-arrow {
+    margin-top: -4px;
+    margin-right: -4px;
+    color: var(--navy);
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.sol-card-reveal:hover .go-corner {
+    transform: translate(2px, -2px);
+}
+
+/* Content Styling inside Premium Card */
+.sol-card-reveal h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+    transition: color 0.3s ease;
+}
+
+.sol-card-reveal .sub {
+    font-size: 0.85rem;
+    color: var(--cyan);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.sol-card-reveal p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.sol-card-reveal .sol-icon {
+    font-size: 1.8rem;
+    color: var(--cyan);
+    margin-bottom: 1.2rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover Content Overrides */
+.sol-card-reveal:hover h4,
+.sol-card-reveal:hover .sol-icon {
+    color: var(--navy);
+}
+
+.sol-card-reveal:hover .sub {
+    color: rgba(13, 31, 60, 0.9);
+}
+
+.sol-card-reveal:hover p {
+    color: rgba(13, 31, 60, 0.8);
+}
+
+
+/* ===================== ARTICLE CARD HOVER IMAGE REVEAL ===================== */
+.article-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(13, 31, 60, 0.18);
+}
+
+.article-img {
+    max-height: 220px;
+    overflow: hidden !important;
+    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.article-card:hover .article-img {
+    max-height: 800px;
+}
+
+.article-img img {
+    width: 100%;
+    height: auto !important;
+    object-fit: unset !important;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.article-card:hover .article-img img {
+    transform: scale(1.02);
 }
